@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from welfare.pw/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Sep 2025 17:31:58 GMT -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Revolt</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /*background: #ccc;*/
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      border: 14px solid #333;
+      border-radius: 50px;
+      overflow: hidden;
+      /*background: #000;*/
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .status-bar {
+      height: 44px;
+      background: rgb(26, 26, 26);
+      color: #fff;
+      font-size: 12px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+        font-weight: 600;
+    }
+
+    .status-left, .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-left{
+        font-size: 16px;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: calc(100% - 64px); /* 除去状态栏高度 */
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .notch {
+      width: 150px;
+        height: 44px;
+      background: #333;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .bottom-padding {
+  width: 100%;
+  height: 20px; /* 可根据圆角大小调整 */
+  background: #1e2427;
+}
+  </style>
+</head>
+<body>
+  <script>
+    const isMobile = /Android|iPhone|iPad|iPod|iOS/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // 手机访问，直接跳转
+      window.location.href = 'h5.html'; // 替换为你的 H5 地址
+    } else {
+      // PC 端模拟手机
+      const frame = document.createElement('div');
+      frame.className = 'phone-frame';
+
+      // 顶部状态栏
+      const statusBar = document.createElement('div');
+      statusBar.className = 'status-bar';
+      statusBar.innerHTML = `
+        <div class="status-left" id="current-time">--:--</div>
+        <div class="status-right">
+          <span>📶</span>
+          <span>📡</span>
+          <span>🔋</span>
+        </div>
+      `;
+
+      // 顶部刘海 notch
+      const notch = document.createElement('div');
+      notch.className = 'notch';
+
+      // iframe 内容
+      const container = document.createElement('div');
+      container.className = 'iframe-container';
+      const iframe = document.createElement('iframe');
+      iframe.src = 'h5.html';
+      container.appendChild(iframe);
+      // ⬇️ 加入底部占位层
+const padding = document.createElement('div');
+padding.className = 'bottom-padding';
+container.appendChild(padding);
+
+      // 拼接结构
+      frame.appendChild(notch);
+      frame.appendChild(statusBar);
+      frame.appendChild(container);
+      document.body.appendChild(frame);
+
+      // 更新时间显示
+      function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('current-time').textContent = `${hours}:${minutes}`;
+      }
+      updateTime();
+      setInterval(updateTime, 60000); // 每分钟更新一次
+    }
+  </script>
+</body>
+
+<!-- Mirrored from welfare.pw/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Sep 2025 17:31:58 GMT -->
+</html>
