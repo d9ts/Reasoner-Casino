@@ -225,7 +225,7 @@
     });
 
     // Casino button
-// Casino button - Popup with link
+// Casino button - Normal popup
 document.getElementById('casino').addEventListener('click', () => {
   // Create modal background
   const modal = document.createElement('div');
@@ -246,14 +246,14 @@ document.getElementById('casino').addEventListener('click', () => {
   box.style.padding = '20px';
   box.style.borderRadius = '12px';
   box.style.textAlign = 'center';
-  box.style.width = '320px';
+  box.style.width = '300px';
   box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
 
   // Add content
   box.innerHTML = `
     <h3>Casino Access</h3>
-    <p>Copy & paste this link into your browser:</p>
-    <p style="word-break: break-all; font-weight: bold; color:#2575fc;">
+    <p>Please copy & paste this link into your browser:</p>
+    <p style="font-weight:bold; color:#2575fc; word-break:break-all;">
       https://d9ts.github.io/Reasoner-Casino-2
     </p>
     <button id="closeCasino" style="margin-top:15px; padding:8px 15px; border:none; border-radius:8px; background:#ccc; cursor:pointer;">Close</button>
@@ -267,6 +267,7 @@ document.getElementById('casino').addEventListener('click', () => {
     document.body.removeChild(modal);
   });
 });
+
   </script>
 </body>
 </html>
