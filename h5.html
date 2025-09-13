@@ -75,39 +75,6 @@
   </style>
 </head>
 <body>
-  <noscript><strong>Please enable JavaScript to continue.</strong></noscript>
-  <div id="app">
-    <h2>Reasoner Casino</h2>
-
-    <!-- Registration Form -->
-    <form id="signupForm">
-      <input type="text" placeholder="Username" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <input type="submit" value="Sign Up">
-    </form>
-
-    <!-- Button Panel (hidden initially) -->
-    <div class="button-container">
-      <button id="casino">Casino</button>
-      <button id="withdraw">Withdraw</button>
-      <button id="contact">Contact Us</button>
-      <button id="topup">Top Up</button>
-    </div>
-  </div>
-
-  <script>
-    // Registration form submission
-    document.getElementById('signupForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const form = e.target;
-      form.style.display = 'none';
-      const buttons = document.querySelector('.button-container');
-      buttons.style.display = 'flex';
-    });
-
-    // Top Up button with Litecoin modal
-    // Define available cryptocurrencies
 <!-- Add this at the very top of your <body> -->
 <div class="promo-banner">
   🎉 Deposit <strong>$5</strong> and get a <strong>$20 Bonus</strong> instantly! 💰
@@ -142,6 +109,40 @@
     color: #ff0055;
   }
 </style>
+
+  <noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+  <div id="app">
+    <h2>Reasoner Casino</h2>
+
+    <!-- Registration Form -->
+    <form id="signupForm">
+      <input type="text" placeholder="Username" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="submit" value="Sign Up">
+    </form>
+
+    <!-- Button Panel (hidden initially) -->
+    <div class="button-container">
+      <button id="casino">Casino</button>
+      <button id="withdraw">Withdraw</button>
+      <button id="contact">Contact Us</button>
+      <button id="topup">Top Up</button>
+    </div>
+  </div>
+
+  <script>
+    // Registration form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const form = e.target;
+      form.style.display = 'none';
+      const buttons = document.querySelector('.button-container');
+      buttons.style.display = 'flex';
+    });
+
+    // Top Up button with Litecoin modal
+    // Define available cryptocurrencies
 
     const cryptoList = [
   {name: 'Bitcoin', symbol: 'BTC', address: 'bc1qwd2vj4nql2jyfsd2mtx63uqzc7uujgsntkskw4', logo: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png'},
