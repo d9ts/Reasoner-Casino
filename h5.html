@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Reasoner Casino</title>
-
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -72,47 +70,49 @@
     input[type="submit"]:hover {
       background: #336;
     }
+
+    /* Promo banner styling */
+    .promo-banner {
+      background: linear-gradient(90deg, #ff0055, #ffcc00);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      text-align: center;
+      display: none; /* hidden by default */
+    }
+
+    .promo-banner .claim-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: white;
+      color: #ff0055;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .promo-banner .claim-btn:hover {
+      background: #ffe066;
+      color: #ff0055;
+    }
   </style>
 </head>
 <body>
-<!-- Add this at the very top of your <body> -->
-<div class="promo-banner">
-  🎉 Deposit <strong>$5</strong> and get a <strong>$20 Bonus</strong> instantly! 💰
-  <a href="#" class="claim-btn">Claim Now</a>
-</div>
-
-<style>
-  .promo-banner {
-    background: linear-gradient(90deg, #ff0055, #ffcc00);
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    padding: 15px 10px;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-  }
-
-  .promo-banner .claim-btn {
-    background: white;
-    color: #ff0055;
-    font-weight: bold;
-    padding: 5px 15px;
-    margin-left: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-
-  .promo-banner .claim-btn:hover {
-    background: #ffe066;
-    color: #ff0055;
-  }
-</style>
-
   <noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+
   <div id="app">
     <h2>Reasoner Casino</h2>
+
+    <!-- Promo Banner (hidden initially) -->
+    <div class="promo-banner">
+      🎉 Deposit <strong>$5</strong> and get a <strong>$20 Bonus</strong> instantly! 💰<br>
+      <a href="#" class="claim-btn">Claim Now</a>
+    </div>
 
     <!-- Registration Form -->
     <form id="signupForm">
@@ -137,216 +137,101 @@
       e.preventDefault();
       const form = e.target;
       form.style.display = 'none';
+
+      // Show button panel
       const buttons = document.querySelector('.button-container');
       buttons.style.display = 'flex';
+
+      // Show promo banner after login
+      const promoBanner = document.querySelector('.promo-banner');
+      promoBanner.style.display = 'block';
     });
 
     // Top Up button with Litecoin modal
-    // Define available cryptocurrencies
-
     const cryptoList = [
-  {name: 'Bitcoin', symbol: 'BTC', address: 'bc1qwd2vj4nql2jyfsd2mtx63uqzc7uujgsntkskw4', logo: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png'},
-  {name: 'Litecoin', symbol: 'LTC', address: 'LQ3hyvBUV89TJi1weJzaFceetUk27LqBPT', logo: 'https://assets.coingecko.com/coins/images/2/large/litecoin.png'},
-  {name: 'Ethereum', symbol: 'ETH', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/279/large/ethereum.png'},
-  {name: 'Tether', symbol: 'USDT', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/325/large/Tether-logo.png'},
-  {name: 'Solana', symbol: 'SOL', address: 'GATh1X7JBwGg3vj6srN6bcuGKffMy2Ya58VMzoZgssQd', logo: 'https://assets.coingecko.com/coins/images/4128/large/solana.png'},
-  {name: 'USD Coin', symbol: 'USDC', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png'}
-];
-// Top Up button
-document.getElementById('topup').addEventListener('click', () => {
+      {name: 'Bitcoin', symbol: 'BTC', address: 'bc1qwd2vj4nql2jyfsd2mtx63uqzc7uujgsntkskw4', logo: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png'},
+      {name: 'Litecoin', symbol: 'LTC', address: 'LQ3hyvBUV89TJi1weJzaFceetUk27LqBPT', logo: 'https://assets.coingecko.com/coins/images/2/large/litecoin.png'},
+      {name: 'Ethereum', symbol: 'ETH', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/279/large/ethereum.png'},
+      {name: 'Tether', symbol: 'USDT', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/325/large/Tether-logo.png'},
+      {name: 'Solana', symbol: 'SOL', address: 'GATh1X7JBwGg3vj6srN6bcuGKffMy2Ya58VMzoZgssQd', logo: 'https://assets.coingecko.com/coins/images/4128/large/solana.png'},
+      {name: 'USD Coin', symbol: 'USDC', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png'}
+    ];
 
-  // Create modal
-  const modal = document.createElement('div');
-  modal.style.position = 'fixed';
-  modal.style.top = 0;
-  modal.style.left = 0;
-  modal.style.width = '100%';
-  modal.style.height = '100%';
-  modal.style.background = 'rgba(0,0,0,0.6)';
-  modal.style.display = 'flex';
-  modal.style.alignItems = 'center';
-  modal.style.justifyContent = 'center';
-  modal.style.zIndex = 9999;
+    // Top Up button
+    document.getElementById('topup').addEventListener('click', () => {
+      const modal = document.createElement('div');
+      modal.style.position = 'fixed';
+      modal.style.top = 0;
+      modal.style.left = 0;
+      modal.style.width = '100%';
+      modal.style.height = '100%';
+      modal.style.background = 'rgba(0,0,0,0.6)';
+      modal.style.display = 'flex';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
+      modal.style.zIndex = 9999;
 
-  const box = document.createElement('div');
-  box.style.background = '#fff';
-  box.style.padding = '20px';
-  box.style.borderRadius = '12px';
-  box.style.textAlign = 'center';
-  box.style.width = '320px';
-  box.style.maxHeight = '80vh';
-  box.style.overflowY = 'auto';
-  box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+      const box = document.createElement('div');
+      box.style.background = '#fff';
+      box.style.padding = '20px';
+      box.style.borderRadius = '12px';
+      box.style.textAlign = 'center';
+      box.style.width = '320px';
+      box.style.maxHeight = '80vh';
+      box.style.overflowY = 'auto';
+      box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
 
-  // Add content for each crypto
-  box.innerHTML = `<h3>Top Up Cryptocurrency</h3>`;
-  cryptoList.forEach(crypto => {
-    const cryptoDiv = document.createElement('div');
-    cryptoDiv.style.margin = '15px 0';
-    cryptoDiv.style.display = 'flex';
-    cryptoDiv.style.flexDirection = 'column';
-    cryptoDiv.style.alignItems = 'center';
-    cryptoDiv.innerHTML = `
-      <img src="${crypto.logo}" alt="${crypto.name}" style="width:50px; height:50px; margin-bottom:8px;">
-      <strong>${crypto.name}</strong>
-      <p style="word-break: break-all; margin:5px 0;">${crypto.address}</p>
-      <button class="confirmTopupBtn" style="padding:8px 15px; border:none; border-radius:8px; background:#448; color:#fff; cursor:pointer;">I've Sent ${crypto.symbol}</button>
-    `;
-    box.appendChild(cryptoDiv);
-  });
+      box.innerHTML = `<h3>Top Up Cryptocurrency</h3>`;
+      cryptoList.forEach(crypto => {
+        const cryptoDiv = document.createElement('div');
+        cryptoDiv.style.margin = '15px 0';
+        cryptoDiv.style.display = 'flex';
+        cryptoDiv.style.flexDirection = 'column';
+        cryptoDiv.style.alignItems = 'center';
+        cryptoDiv.innerHTML = `
+          <img src="${crypto.logo}" alt="${crypto.name}" style="width:50px; height:50px; margin-bottom:8px;">
+          <strong>${crypto.name}</strong>
+          <p style="word-break: break-all; margin:5px 0;">${crypto.address}</p>
+          <button class="confirmTopupBtn" style="padding:8px 15px; border:none; border-radius:8px; background:#448; color:#fff; cursor:pointer;">I've Sent ${crypto.symbol}</button>
+        `;
+        box.appendChild(cryptoDiv);
+      });
 
-  // Close button
-  const closeBtn = document.createElement('button');
-  closeBtn.textContent = 'Close';
-  closeBtn.style.marginTop = '15px';
-  closeBtn.style.padding = '8px 15px';
-  closeBtn.style.border = 'none';
-  closeBtn.style.borderRadius = '8px';
-  closeBtn.style.background = '#ccc';
-  closeBtn.style.color = '#000';
-  closeBtn.style.cursor = 'pointer';
-  closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Close';
+      closeBtn.style.marginTop = '15px';
+      closeBtn.style.padding = '8px 15px';
+      closeBtn.style.border = 'none';
+      closeBtn.style.borderRadius = '8px';
+      closeBtn.style.background = '#ccc';
+      closeBtn.style.color = '#000';
+      closeBtn.style.cursor = 'pointer';
+      closeBtn.addEventListener('click', () => document.body.removeChild(modal));
 
-  box.appendChild(closeBtn);
-  modal.appendChild(box);
-  document.body.appendChild(modal);
+      box.appendChild(closeBtn);
+      modal.appendChild(box);
+      document.body.appendChild(modal);
 
-  // Confirm buttons click
-  box.querySelectorAll('.confirmTopupBtn').forEach((btn, idx) => {
-    btn.addEventListener('click', () => {
-      const crypto = cryptoList[idx];
-      setTimeout(() => {
-        const receivedAmount = 0.5; // example received
-        alert(`${crypto.symbol} Transaction confirmed!\nReceived: ${receivedAmount} ${crypto.symbol}`);
-        if(!window.userBalance) window.userBalance = {};
-        if(!window.userBalance[crypto.symbol]) window.userBalance[crypto.symbol] = 0;
-        window.userBalance[crypto.symbol] += receivedAmount;
-        alert(`Your new ${crypto.symbol} balance: ${window.userBalance[crypto.symbol]} ${crypto.symbol}`);
-      }, 1500);
-      document.body.removeChild(modal);
+      box.querySelectorAll('.confirmTopupBtn').forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+          const crypto = cryptoList[idx];
+          setTimeout(() => {
+            const receivedAmount = 0.5;
+            alert(`${crypto.symbol} Transaction confirmed!\nReceived: ${receivedAmount} ${crypto.symbol}`);
+            if(!window.userBalance) window.userBalance = {};
+            if(!window.userBalance[crypto.symbol]) window.userBalance[crypto.symbol] = 0;
+            window.userBalance[crypto.symbol] += receivedAmount;
+            alert(`Your new ${crypto.symbol} balance: ${window.userBalance[crypto.symbol]} ${crypto.symbol}`);
+          }, 1500);
+          document.body.removeChild(modal);
+        });
+      });
     });
-  });
-});
-// Add this inside your existing <script> tag, after the Top Up button handler
-document.getElementById('withdraw').addEventListener('click', () => {
-  // Create modal
-  const modal = document.createElement('div');
-  modal.style.position = 'fixed';
-  modal.style.top = 0;
-  modal.style.left = 0;
-  modal.style.width = '100%';
-  modal.style.height = '100%';
-  modal.style.background = 'rgba(0,0,0,0.6)';
-  modal.style.display = 'flex';
-  modal.style.alignItems = 'center';
-  modal.style.justifyContent = 'center';
-  modal.style.zIndex = 9999;
 
-  const box = document.createElement('div');
-  box.style.background = '#fff';
-  box.style.padding = '20px';
-  box.style.borderRadius = '12px';
-  box.style.textAlign = 'center';
-  box.style.width = '320px';
-  box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-
-  box.innerHTML = `
-    <h3>Withdraw Funds</h3>
-    <p>Select cryptocurrency and enter withdrawal address:</p>
-    <select id="withdrawCrypto" style="padding:8px; margin-bottom:10px; width:80%;">
-      <option value="BTC">Bitcoin (BTC)</option>
-      <option value="LTC">Litecoin (LTC)</option>
-      <option value="ETH">Ethereum (ETH)</option>
-      <option value="USDT">Tether (USDT)</option>
-      <option value="SOL">Solana (SOL)</option>
-      <option value="USDC">USD Coin (USDC)</option>
-    </select>
-    <input type="text" id="withdrawAddress" placeholder="Withdrawal Address" style="width:90%; padding:8px; margin-bottom:10px;">
-    <input type="number" id="withdrawAmount" placeholder="Amount" style="width:90%; padding:8px; margin-bottom:10px;">
-    <button id="confirmWithdraw" style="padding:10px 20px; border:none; border-radius:8px; background:#448; color:#fff; cursor:pointer;">Withdraw</button>
-    <button id="closeWithdraw" style="margin-top:10px;padding:8px 15px;border:none;border-radius:8px;background:#ccc;color:#000;cursor:pointer;">Close</button>
-  `;
-
-  modal.appendChild(box);
-  document.body.appendChild(modal);
-
-  // Close button
-  document.getElementById('closeWithdraw').addEventListener('click', () => {
-    document.body.removeChild(modal);
-  });
-
-  // Confirm withdrawal
-  document.getElementById('confirmWithdraw').addEventListener('click', () => {
-    const crypto = document.getElementById('withdrawCrypto').value;
-    const address = document.getElementById('withdrawAddress').value;
-    const amount = parseFloat(document.getElementById('withdrawAmount').value);
-
-    if(!window.userBalance || !window.userBalance[crypto]) window.userBalance = window.userBalance || {}; window.userBalance[crypto] = window.userBalance[crypto] || 0;
-
-    if(amount <= 0 || amount > window.userBalance[crypto]) {
-      alert('Invalid amount!');
-      return;
-    }
-
-    // Subtract from balance
-    window.userBalance[crypto] -= amount;
-    alert(`Withdrawal requested!\n${amount} ${crypto} will be sent to ${address}.\nNew balance: ${window.userBalance[crypto]} ${crypto}`);
-
-    document.body.removeChild(modal);
-  });
-});
-document.getElementById('contact').addEventListener('click', () => {
-  // Create modal
-  const modal = document.createElement('div');
-  modal.style.position = 'fixed';
-  modal.style.top = 0;
-  modal.style.left = 0;
-  modal.style.width = '100%';
-  modal.style.height = '100%';
-  modal.style.background = 'rgba(0,0,0,0.6)';
-  modal.style.display = 'flex';
-  modal.style.alignItems = 'center';
-  modal.style.justifyContent = 'center';
-  modal.style.zIndex = 9999;
-
-  const box = document.createElement('div');
-  box.style.background = '#fff';
-  box.style.padding = '20px';
-  box.style.borderRadius = '12px';
-  box.style.textAlign = 'center';
-  box.style.width = '280px';
-  box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-
-  // Add content with logos
-  box.innerHTML = `
-    <h3>Contact Us</h3>
-    <div style="display:flex; align-items:center; gap:10px; justify-content:center; margin:10px 0;">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width:24px; height:24px;">
-      <a href="https://instagram.com/d9ts" target="_blank" style="font-weight:bold; text-decoration:none; color:#000;">@d9ts</a>
-    </div>
-    <div style="display:flex; align-items:center; gap:10px; justify-content:center; margin:10px 0;">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width:24px; height:24px;">
-      <a href="https://t.me/lovexannies" target="_blank" style="font-weight:bold; text-decoration:none; color:#000;">@lovexannies</a>
-    </div>
-    <button id="closeContact" style="margin-top:15px;padding:8px 15px;border:none;border-radius:8px;background:#ccc;color:#000;cursor:pointer;">Close</button>
-  `;
-
-  modal.appendChild(box);
-  document.body.appendChild(modal);
-
-  // Close button
-  document.getElementById('closeContact').addEventListener('click', () => {
-    document.body.removeChild(modal);
-  });
-});
-// Casino button - Coming Soon popup
-document.getElementById('casino').addEventListener('click', () => {
-  window.location.href = "https://d9ts.github.io/Reasoner-Casino/casino/index.php";
-
-});
-
+    // Casino button
+    document.getElementById('casino').addEventListener('click', () => {
+      window.location.href = "./casino.html";
+    });
   </script>
 </body>
 </html>
-
-
