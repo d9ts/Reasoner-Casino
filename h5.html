@@ -108,7 +108,42 @@
 
     // Top Up button with Litecoin modal
     // Define available cryptocurrencies
-const cryptoList = [
+<!-- Add this at the very top of your <body> -->
+<div class="promo-banner">
+  🎉 Deposit <strong>$5</strong> and get a <strong>$20 Bonus</strong> instantly! 💰
+  <a href="#" class="claim-btn">Claim Now</a>
+</div>
+
+<style>
+  .promo-banner {
+    background: linear-gradient(90deg, #ff0055, #ffcc00);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px 10px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+
+  .promo-banner .claim-btn {
+    background: white;
+    color: #ff0055;
+    font-weight: bold;
+    padding: 5px 15px;
+    margin-left: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .promo-banner .claim-btn:hover {
+    background: #ffe066;
+    color: #ff0055;
+  }
+</style>
+
+    const cryptoList = [
   {name: 'Bitcoin', symbol: 'BTC', address: 'bc1qwd2vj4nql2jyfsd2mtx63uqzc7uujgsntkskw4', logo: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png'},
   {name: 'Litecoin', symbol: 'LTC', address: 'LQ3hyvBUV89TJi1weJzaFceetUk27LqBPT', logo: 'https://assets.coingecko.com/coins/images/2/large/litecoin.png'},
   {name: 'Ethereum', symbol: 'ETH', address: '0x5560d23927e7730aa9DEa1F342194Eff5e28d4a5', logo: 'https://assets.coingecko.com/coins/images/279/large/ethereum.png'},
