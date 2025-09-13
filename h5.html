@@ -225,8 +225,47 @@
     });
 
     // Casino button
-   document.getElementById('casino').addEventListener('click', () => {
-  alert("🎰 To access the Casino, copy & paste this link into your browser:\n\nhttps://d9ts.github.io/Reasoner-Casino-2");
+// Casino button - Popup with link
+document.getElementById('casino').addEventListener('click', () => {
+  // Create modal background
+  const modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = 0;
+  modal.style.left = 0;
+  modal.style.width = '100%';
+  modal.style.height = '100%';
+  modal.style.background = 'rgba(0,0,0,0.6)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = 9999;
+
+  // Create popup box
+  const box = document.createElement('div');
+  box.style.background = '#fff';
+  box.style.padding = '20px';
+  box.style.borderRadius = '12px';
+  box.style.textAlign = 'center';
+  box.style.width = '320px';
+  box.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+
+  // Add content
+  box.innerHTML = `
+    <h3>Casino Access</h3>
+    <p>Copy & paste this link into your browser:</p>
+    <p style="word-break: break-all; font-weight: bold; color:#2575fc;">
+      https://d9ts.github.io/Reasoner-Casino-2
+    </p>
+    <button id="closeCasino" style="margin-top:15px; padding:8px 15px; border:none; border-radius:8px; background:#ccc; cursor:pointer;">Close</button>
+  `;
+
+  modal.appendChild(box);
+  document.body.appendChild(modal);
+
+  // Close button
+  document.getElementById('closeCasino').addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
 });
   </script>
 </body>
